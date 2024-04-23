@@ -3,13 +3,15 @@ import { useParams } from "react-router";
 
 export default function Planet() {
   const params = useParams();
-  console.log(params);
+  // console.log(params);
 
+  // find current planet name
   const planetName = params.planet;
 
-  const planet = data.find((planetObj) => planetObj.name === planetName);
+  // find current planet with name
+  const currentPlanet = data.find((planetObj) => planetObj.name === planetName);
 
-  console.log(planet);
+  console.log(currentPlanet);
 
-  return <div>{planet?.name}</div>;
+  return <div>{currentPlanet?.name}</div>;
 }
