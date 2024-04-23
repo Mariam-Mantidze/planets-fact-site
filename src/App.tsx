@@ -15,7 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Navigate to={"/Earth"} />} />
-        {/* <Route path="/:planet" element={<Planet />} /> */}
+        <Route path="/:planet" element={<Planet />} />
       </Routes>
     </>
   );

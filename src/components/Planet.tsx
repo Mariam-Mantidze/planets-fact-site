@@ -1,5 +1,6 @@
 import data from "../data.json";
 import { useParams } from "react-router";
+import styled from "styled-components";
 
 export default function Planet() {
   const params = useParams();
@@ -13,5 +14,9 @@ export default function Planet() {
 
   console.log(currentPlanet);
 
-  return <div>{currentPlanet?.name}</div>;
+  return <CurrentPlanet>{currentPlanet?.name}</CurrentPlanet>;
 }
+
+const CurrentPlanet = styled.h1`
+  font-size: 100px;
+`;

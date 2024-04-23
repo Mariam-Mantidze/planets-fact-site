@@ -6,13 +6,18 @@ import { useState } from "react";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setOpen((open) => !open);
+  };
+
   return (
     <>
       <StyledHeader>
         <h1>THE PLANETS</h1>
         <img
           open={open}
-          onClick={() => setOpen(!open)}
+          onClick={toggleMenu}
           src={Menu}
           alt="burger-menu icon"
         />
@@ -21,9 +26,24 @@ export default function Header() {
           <StyledList open={open}>
             {data.map((planet, index) => {
               return (
-                <li key={index}>
-                  <Link to={`/${planet.name}`}>{planet.name}</Link>
-                </li>
+                <StyledLi key={index} color={planet.design.color}>
+                  <div className="planet-box">
+                    <PlanetCircle color={planet.design.color}></PlanetCircle>
+                    <Link to={`/${planet.name}`}>{planet.name}</Link>
+                  </div>
+                  <svg
+                    className="arrow"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="6"
+                    height="8">
+                    <path
+                      fill="none"
+                      stroke="#FFF"
+                      opacity=".4"
+                      d="M1 0l4 4-4 4"
+                    />
+                  </svg>
+                </StyledLi>
               );
             })}
           </StyledList>
@@ -56,11 +76,15 @@ const StyledHeader = styled.header`
 `;
 
 const StyledNav = styled.nav`
-  display: flex;
+  display: ${({ open }) => (open ? "flex" : "none")};
   position: fixed;
   z-index: 2;
-  left: 2.4rem;
-  top: 11.3rem;
+  width: 100%;
+  height: 100vh;
+  padding: 24px 44px;
+  background: rgba(7, 7, 36, 1);
+  left: 0;
+  top: 7.3rem;
 `;
 
 const StyledList = styled.ul`
@@ -70,18 +94,37 @@ const StyledList = styled.ul`
   gap: 3.3rem;
   list-style: none;
   font-family: "League Spartan", sans-serif;
-
-  & > li {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 2.5rem;
-    text-align: center;
-    letter-spacing: 1.3636363744735718px;
-  }
+  width: 100%;
 
   a:-webkit-any-link {
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
     text-decoration: none;
   }
+`;
+
+const StyledLi = styled.li`
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  letter-spacing: 1.3636363744735718px;
+  border-bottom: 1px solid rgba(255, 255, 255, 10%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+
+  & .planet-box {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+`;
+
+const PlanetCircle = styled.div`
+  width: 2rem;
+  height: 2rem;
+  background: ${(props) => props.color};
+  border-radius: 50%;
 `;
