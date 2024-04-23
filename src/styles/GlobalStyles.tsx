@@ -5,9 +5,24 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+   
+
     }
 
     html {
         font-size: 62.5%;
+    }
+
+    body {
+        background-color: rgba(7, 7, 36, 1);
+       min-height: 100dvh;
+       background-image: url("/assets/background-starts.svg")
+
+    }
+
+    h1, h2 {
+        font-family: "Antonio", sans-serif;
+        /* font-family: "League Spartan", sans-serif; */
+
     }
 `;

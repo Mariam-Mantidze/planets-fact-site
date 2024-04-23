@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router";
 import Planet from "./components/Planet";
 import Header from "./components/Header";
 import { GlobalStyles } from "./styles/GlobalStyles";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -14,7 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Navigate to={"/Earth"} />} />
-        <Route path="/:planet" element={<Planet />} />
+        {/* <Route path="/:planet" element={<Planet />} /> */}
       </Routes>
     </>
   );
