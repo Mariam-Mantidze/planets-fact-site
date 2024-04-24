@@ -1,10 +1,11 @@
 import data from "../data.json";
 import { useParams } from "react-router";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function Planet() {
+  const [filter, setFilter] = useState("overview");
   const params = useParams();
-  // console.log(params);
 
   // find current planet name
   const planetName = params.planet;
@@ -12,14 +13,16 @@ export default function Planet() {
   // find current planet with name
   const currentPlanet = data.find((planetObj) => planetObj.name === planetName);
 
-  // console.log(currentPlanet);
+  const viewOption = currentPlanet?.viewOption;
+
+  const filterNames = Object.keys(viewOption);
 
   return (
     <>
       <MobileFilter>
-        <span>OVERVIEW</span>
-        <span>STRUCTURE</span>
-        <span>SURFACE</span>
+        {filterNames.map((filter, index) => {
+          return <span key={index}>{filter.toUpperCase()}</span>;
+        })}
       </MobileFilter>
       <CurrentPlanet>{currentPlanet?.name}</CurrentPlanet>;
     </>

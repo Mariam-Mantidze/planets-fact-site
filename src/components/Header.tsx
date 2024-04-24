@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [filter, setFilter] = useState("overview");
 
   const toggleMenu = () => {
     setOpen((open) => !open);
@@ -28,8 +27,8 @@ export default function Header() {
         </svg>
 
         {open ? (
-          <StyledNav open={open}>
-            <StyledList open={open}>
+          <StyledNav>
+            <StyledList>
               {data.map((planet, index) => {
                 return (
                   <StyledLi
@@ -99,24 +98,6 @@ const StyledNav = styled.nav`
   left: 0;
   top: 7.3rem;
   transition: 2s ease;
-
-  /* @keyframes slidein {
-    from {
-      transform: translateX(-150%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideout {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-150%);
-    }
-  } */
 `;
 
 const StyledList = styled.ul`
