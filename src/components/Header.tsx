@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [filter, setFilter] = useState("overview");
 
   const toggleMenu = () => {
     setOpen((open) => !open);
@@ -60,11 +61,6 @@ export default function Header() {
           ""
         )}
       </StyledHeader>
-      <MobileFilter>
-        <span>OVERVIEW</span>
-        <span>STRUCTURE</span>
-        <span>SURFACE</span>
-      </MobileFilter>
     </>
   );
 }
@@ -144,7 +140,7 @@ const StyledLi = styled.li`
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 2.5rem;
-  letter-spacing: 1.3636363744735718px;
+  letter-spacing: 0.136rem;
   border-bottom: 1px solid rgba(255, 255, 255, 10%);
   width: 100%;
   display: flex;
@@ -174,23 +170,4 @@ const PlanetCircle = styled.div`
   height: 2rem;
   background: ${(props) => props.color};
   border-radius: 50%;
-`;
-
-const MobileFilter = styled.div`
-  width: 100%;
-  display: flex;
-  /* gap: 4.3rem; */
-  justify-content: space-around;
-  color: rgba(255, 255, 255, 50%);
-  border-bottom: 1px solid rgba(255, 255, 255, 20%);
-  padding: 2rem 0;
-
-  & span {
-    font-family: "League Spartan", sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    line-height: 1.008rem;
-    letter-spacing: 1.9285714626312256px;
-    text-align: center;
-  }
 `;
