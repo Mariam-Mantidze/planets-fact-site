@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 export default function Planet() {
-  const [filter, setFilter] = useState("overview");
+  const [contentType, setContentType] = useState("overview");
   const params = useParams();
 
   // find current planet name
@@ -21,17 +21,28 @@ export default function Planet() {
     <>
       <MobileFilter>
         {filterNames.map((filter, index) => {
-          return <span key={index}>{filter.toUpperCase()}</span>;
+          return (
+            <span onClick={() => setContentType(filter)} key={index}>
+              {filter.toUpperCase()}
+            </span>
+          );
         })}
       </MobileFilter>
-      <CurrentPlanet>{currentPlanet?.name}</CurrentPlanet>;
+      <CurrentPlanet>
+        <StyledImg
+          style={{ width: currentPlanet?.design.overview_mobile }}
+          src={currentPlanet?.images.planet}
+          alt=""
+        />
+      </CurrentPlanet>
+      ;
     </>
   );
 }
 
-const CurrentPlanet = styled.h1`
-  font-size: 100px;
-`;
+const CurrentPlanet = styled.main``;
+
+const StyledImg = styled.img``;
 
 const MobileFilter = styled.div`
   width: 100%;

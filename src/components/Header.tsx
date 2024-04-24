@@ -32,6 +32,7 @@ export default function Header() {
               {data.map((planet, index) => {
                 return (
                   <StyledLi
+                    onClick={toggleMenu}
                     key={index}
                     color={planet.design.color}
                     style={{ animationDelay: `${index * 0.1}s` }}>
@@ -87,8 +88,6 @@ const StyledHeader = styled.header`
 `;
 
 const StyledNav = styled.nav`
-  /* animation: ${({ open }) =>
-    open ? "1s slidein forwards" : "slideout 1s forwards"}; */
   position: fixed;
   z-index: 2;
   width: 100%;
