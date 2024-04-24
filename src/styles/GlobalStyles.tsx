@@ -16,7 +16,10 @@ export const GlobalStyles = createGlobalStyle`
     body {
         background-color: rgba(7, 7, 36, 1);
        min-height: 100dvh;
-       /* background-image: url("/assets/background-starts.svg") */
+       background-image: url("/starter-code/assets/background-stars.svg");
+       background-repeat: no-repeat;
+       background-size: cover;
+       /* background-position: center; */
 
     }
 

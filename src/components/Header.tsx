@@ -1,7 +1,6 @@
 import data from "../data.json";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Menu from "/starter-code/assets/icon-hamburger.svg";
 import { useState } from "react";
 
 export default function Header() {
@@ -22,7 +21,7 @@ export default function Header() {
           height="17">
           <g
             fill={open ? "rgba(255, 255, 255, 0.20)" : "rgba(255, 255, 255, 1)"}
-            fill-rule="evenodd">
+            fillRule="evenodd">
             <path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z" />
           </g>
         </svg>
@@ -61,6 +60,11 @@ export default function Header() {
           ""
         )}
       </StyledHeader>
+      <MobileFilter>
+        <span>OVERVIEW</span>
+        <span>STRUCTURE</span>
+        <span>SURFACE</span>
+      </MobileFilter>
     </>
   );
 }
@@ -170,4 +174,23 @@ const PlanetCircle = styled.div`
   height: 2rem;
   background: ${(props) => props.color};
   border-radius: 50%;
+`;
+
+const MobileFilter = styled.div`
+  width: 100%;
+  display: flex;
+  /* gap: 4.3rem; */
+  justify-content: space-around;
+  color: rgba(255, 255, 255, 50%);
+  border-bottom: 1px solid rgba(255, 255, 255, 20%);
+  padding: 2rem 0;
+
+  & span {
+    font-family: "League Spartan", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.008rem;
+    letter-spacing: 1.9285714626312256px;
+    text-align: center;
+  }
 `;
