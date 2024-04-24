@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 export default function Planet() {
-  const [contentType, setContentType] = useState("overview");
+  const [viewOption, setViewOption] = useState("overview");
   const params = useParams();
 
   // find current planet name
@@ -13,36 +13,69 @@ export default function Planet() {
   // find current planet with name
   const currentPlanet = data.find((planetObj) => planetObj.name === planetName);
 
-  const viewOption = currentPlanet?.viewOption;
+  const currentViewOption = currentPlanet?.viewOption;
 
-  const filterNames = Object.keys(viewOption);
+  const filterNames = Object.keys(currentViewOption);
 
   return (
     <>
       <MobileFilter>
         {filterNames.map((filter, index) => {
           return (
-            <span onClick={() => setContentType(filter)} key={index}>
+            <span onClick={() => setViewOption(filter)} key={index}>
               {filter.toUpperCase()}
             </span>
           );
         })}
       </MobileFilter>
       <CurrentPlanet>
-        <StyledImg
-          style={{ width: currentPlanet?.design.overview_mobile }}
-          src={currentPlanet?.images.planet}
-          alt=""
-        />
+        <div className="img-container">
+          <StyledImg
+            style={{ width: currentPlanet?.design.overview_mobile }}
+            src={
+              (viewOption === "structure" && currentPlanet?.images.internal) ||
+              (viewOption === "geology" && currentPlanet?.images.planet) ||
+              currentPlanet?.images.planet
+            }
+            alt="planet image"
+          />
+          {viewOption === "geology" && (
+            <img
+              className="geology-img"
+              src={currentPlanet?.images.geology}
+              alt="geology of a planet"
+            />
+          )}
+        </div>
       </CurrentPlanet>
       ;
     </>
   );
 }
 
-const CurrentPlanet = styled.main``;
+const CurrentPlanet = styled.main`
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
 
-const StyledImg = styled.img``;
+  & .img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  & .geology-img {
+    width: 5rem;
+    bottom: -2rem;
+    position: absolute;
+  }
+`;
+
+const StyledImg = styled.img`
+  display: block;
+  position: relative;
+`;
 
 const MobileFilter = styled.div`
   width: 100%;

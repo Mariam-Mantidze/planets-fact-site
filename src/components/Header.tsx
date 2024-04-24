@@ -96,7 +96,7 @@ const StyledNav = styled.nav`
   background: rgba(7, 7, 36, 1);
   left: 0;
   top: 7.3rem;
-  transition: 2s ease;
+  /* transition: 2s ease-in-out; */
 `;
 
 const StyledList = styled.ul`
