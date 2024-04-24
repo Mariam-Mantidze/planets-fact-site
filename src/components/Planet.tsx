@@ -13,16 +13,30 @@ export default function Planet() {
   // find current planet with name
   const currentPlanet = data.find((planetObj) => planetObj.name === planetName);
 
-  const currentViewOption = currentPlanet?.viewOption;
+  // const currentViewOption = currentPlanet?.viewOption;
 
-  const filterNames = Object.keys(currentViewOption);
+  // const filterNames = Object.keys(currentViewOption);
+
+  const viewOptionArr = ["overview", "structure", "surface"];
 
   return (
     <>
       <MobileFilter>
-        {filterNames.map((filter, index) => {
+        {viewOptionArr.map((filter, index) => {
           return (
-            <span onClick={() => setViewOption(filter)} key={index}>
+            <span
+              style={{
+                color:
+                  filter === viewOption
+                    ? "rgba(255, 255, 255, 1)"
+                    : "rgba(255, 255, 255, 50%)",
+                borderBottom:
+                  filter === viewOption
+                    ? `4px solid ${currentPlanet?.design.color} `
+                    : "",
+              }}
+              onClick={() => setViewOption(filter)}
+              key={index}>
               {filter.toUpperCase()}
             </span>
           );
@@ -36,12 +50,12 @@ export default function Planet() {
               src={
                 (viewOption === "structure" &&
                   currentPlanet?.images.internal) ||
-                (viewOption === "geology" && currentPlanet?.images.planet) ||
+                (viewOption === "surface" && currentPlanet?.images.planet) ||
                 currentPlanet?.images.planet
               }
               alt="planet image"
             />
-            {viewOption === "geology" && (
+            {viewOption === "surface" && (
               <img
                 className="geology-img"
                 src={currentPlanet?.images.geology}
@@ -104,7 +118,7 @@ const CurrentPlanet = styled.main`
   }
 
   & .info-container {
-    margin-top: 6rem;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,9 +172,7 @@ const MobileFilter = styled.div`
   display: flex;
   /* gap: 4.3rem; */
   justify-content: space-around;
-  color: rgba(255, 255, 255, 50%);
   border-bottom: 1px solid rgba(255, 255, 255, 20%);
-  padding: 2rem 0;
 
   & span {
     font-family: "League Spartan", sans-serif;
@@ -170,5 +182,7 @@ const MobileFilter = styled.div`
     letter-spacing: 1.9285714626312256px;
     text-align: center;
     cursor: pointer;
+    padding: 2rem 0;
+    width: 7rem;
   }
 `;
