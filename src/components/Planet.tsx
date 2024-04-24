@@ -52,7 +52,7 @@ export default function Planet() {
 
           <div className="info-and-viewOption-container">
             <div className="info-container">
-              <h2>{currentPlanet?.name}</h2>
+              <h2>{currentPlanet?.name.toUpperCase()}</h2>
               <p>
                 {(viewOption === "overview" &&
                   currentPlanet?.viewOption.overview.content) ||
@@ -60,7 +60,23 @@ export default function Planet() {
                     currentPlanet?.viewOption.structure.content) ||
                   currentPlanet?.viewOption.geology.content}
               </p>
+              <span>
+                Source :{" "}
+                <a
+                  href={
+                    (viewOption === "overview" &&
+                      currentPlanet?.viewOption.overview.source) ||
+                    (viewOption === "structure" &&
+                      currentPlanet?.viewOption.structure.source) ||
+                    currentPlanet?.viewOption.geology.source
+                  }>
+                  Wikipedia
+                  <img src={"/assets/icon-source.svg"} alt="source icon" />
+                </a>
+              </span>
             </div>
+
+            <div className="view-option-container"></div>
           </div>
         </div>
       </CurrentPlanet>
@@ -72,6 +88,7 @@ const CurrentPlanet = styled.main`
   display: flex;
   justify-content: center;
   margin-top: 6rem;
+  padding: 0 2.4rem;
 
   & .img-container {
     display: flex;
@@ -84,6 +101,51 @@ const CurrentPlanet = styled.main`
     width: 6rem;
     position: absolute;
     bottom: -2rem;
+  }
+
+  & .info-container {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 400;
+
+    & > h2 {
+      font-size: 4rem;
+      font-weight: 400;
+      line-height: 5.176rem;
+    }
+
+    & > p {
+      font-family: "League Spartan", sans-serif;
+      font-size: 1.1rem;
+      line-height: 2.2rem;
+      text-align: center;
+      opacity: 50%;
+    }
+
+    & span {
+      opacity: 50%;
+      font-family: "League Spartan", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+
+      & > a {
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+      }
+    }
   }
 `;
 
