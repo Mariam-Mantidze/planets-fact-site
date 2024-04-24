@@ -77,6 +77,8 @@ export default function Planet() {
               <span>
                 Source :{" "}
                 <a
+                  target="_blank"
+                  rel="noopener noreferrer"
                   href={
                     (viewOption === "overview" &&
                       currentPlanet?.viewOption.overview.source) ||
