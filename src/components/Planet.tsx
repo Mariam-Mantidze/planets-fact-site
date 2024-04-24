@@ -29,26 +29,41 @@ export default function Planet() {
         })}
       </MobileFilter>
       <CurrentPlanet>
-        <div className="img-container">
-          <StyledImg
-            style={{ width: currentPlanet?.design.overview_mobile }}
-            src={
-              (viewOption === "structure" && currentPlanet?.images.internal) ||
-              (viewOption === "geology" && currentPlanet?.images.planet) ||
-              currentPlanet?.images.planet
-            }
-            alt="planet image"
-          />
-          {viewOption === "geology" && (
-            <img
-              className="geology-img"
-              src={currentPlanet?.images.geology}
-              alt="geology of a planet"
+        <div className="planet-and-info-container">
+          <div className="img-container">
+            <StyledImg
+              style={{ width: currentPlanet?.design.overview_mobile }}
+              src={
+                (viewOption === "structure" &&
+                  currentPlanet?.images.internal) ||
+                (viewOption === "geology" && currentPlanet?.images.planet) ||
+                currentPlanet?.images.planet
+              }
+              alt="planet image"
             />
-          )}
+            {viewOption === "geology" && (
+              <img
+                className="geology-img"
+                src={currentPlanet?.images.geology}
+                alt="geology of a planet"
+              />
+            )}
+          </div>
+
+          <div className="info-and-viewOption-container">
+            <div className="info-container">
+              <h2>{currentPlanet?.name}</h2>
+              <p>
+                {(viewOption === "overview" &&
+                  currentPlanet?.viewOption.overview.content) ||
+                  (viewOption === "structure" &&
+                    currentPlanet?.viewOption.structure.content) ||
+                  currentPlanet?.viewOption.geology.content}
+              </p>
+            </div>
+          </div>
         </div>
       </CurrentPlanet>
-      ;
     </>
   );
 }
@@ -66,15 +81,14 @@ const CurrentPlanet = styled.main`
   }
 
   & .geology-img {
-    width: 5rem;
-    bottom: -2rem;
+    width: 6rem;
     position: absolute;
+    bottom: -2rem;
   }
 `;
 
 const StyledImg = styled.img`
   display: block;
-  position: relative;
 `;
 
 const MobileFilter = styled.div`
