@@ -15,39 +15,51 @@ export default function Header() {
     <>
       <StyledHeader>
         <h1>THE PLANETS</h1>
-        <img
-          open={open}
+        <svg
           onClick={toggleMenu}
-          src={Menu}
-          alt="burger-menu icon"
-        />
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="17">
+          <g
+            fill={open ? "rgba(255, 255, 255, 0.20)" : "rgba(255, 255, 255, 1)"}
+            fill-rule="evenodd">
+            <path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z" />
+          </g>
+        </svg>
 
-        <StyledNav open={open}>
-          <StyledList open={open}>
-            {data.map((planet, index) => {
-              return (
-                <StyledLi key={index} color={planet.design.color}>
-                  <div className="planet-box">
-                    <PlanetCircle color={planet.design.color}></PlanetCircle>
-                    <Link to={`/${planet.name}`}>{planet.name}</Link>
-                  </div>
-                  <svg
-                    className="arrow"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="6"
-                    height="8">
-                    <path
-                      fill="none"
-                      stroke="#FFF"
-                      opacity=".4"
-                      d="M1 0l4 4-4 4"
-                    />
-                  </svg>
-                </StyledLi>
-              );
-            })}
-          </StyledList>
-        </StyledNav>
+        {open ? (
+          <StyledNav open={open}>
+            <StyledList open={open}>
+              {data.map((planet, index) => {
+                return (
+                  <StyledLi
+                    key={index}
+                    color={planet.design.color}
+                    style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="planet-box">
+                      <PlanetCircle color={planet.design.color}></PlanetCircle>
+                      <Link to={`/${planet.name}`}>{planet.name}</Link>
+                    </div>
+                    <svg
+                      className="arrow"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="6"
+                      height="8">
+                      <path
+                        fill="none"
+                        stroke="#FFF"
+                        opacity=".4"
+                        d="M1 0l4 4-4 4"
+                      />
+                    </svg>
+                  </StyledLi>
+                );
+              })}
+            </StyledList>
+          </StyledNav>
+        ) : (
+          ""
+        )}
       </StyledHeader>
     </>
   );
@@ -70,31 +82,52 @@ const StyledHeader = styled.header`
     text-align: left;
   }
 
-  & > img {
+  & > svg {
     cursor: pointer;
   }
 `;
 
 const StyledNav = styled.nav`
-  display: ${({ open }) => (open ? "flex" : "none")};
+  /* animation: ${({ open }) =>
+    open ? "1s slidein forwards" : "slideout 1s forwards"}; */
   position: fixed;
   z-index: 2;
   width: 100%;
   height: 100vh;
-  padding: 24px 44px;
+  padding: 2.4rem;
   background: rgba(7, 7, 36, 1);
   left: 0;
   top: 7.3rem;
+  transition: 2s ease;
+
+  /* @keyframes slidein {
+    from {
+      transform: translateX(-150%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideout {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-150%);
+    }
+  } */
 `;
 
 const StyledList = styled.ul`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 3.3rem;
+  /* gap: 3.3rem; */
   list-style: none;
   font-family: "League Spartan", sans-serif;
   width: 100%;
+  cursor: pointer;
 
   a:-webkit-any-link {
     color: rgba(255, 255, 255, 1);
@@ -114,6 +147,16 @@ const StyledLi = styled.li`
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
+
+  animation: fadeIn 1s ease;
+  animation-fill-mode: both;
+  opacity: 0;
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 
   & .planet-box {
     display: flex;
