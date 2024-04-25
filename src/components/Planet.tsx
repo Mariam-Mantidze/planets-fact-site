@@ -2,9 +2,21 @@ import data from "../data.json";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function Planet() {
-  const [viewOption, setViewOption] = useState("overview");
+type PlanetProps = {
+  viewOption: string;
+  setViewOption: React.Dispatch<React.SetStateAction<string>>;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Planet({
+  viewOption,
+  setViewOption,
+  open,
+  setOpen,
+}: PlanetProps) {
   const params = useParams();
 
   // find current planet name
@@ -13,9 +25,7 @@ export default function Planet() {
   // find current planet with name
   const currentPlanet = data.find((planetObj) => planetObj.name === planetName);
 
-  // const currentViewOption = currentPlanet?.viewOption;
-
-  // const filterNames = Object.keys(currentViewOption);
+  const combinedKey = `${viewOption}-${open}`;
 
   const viewOptionArr = ["overview", "structure", "surface"];
 
@@ -44,7 +54,21 @@ export default function Planet() {
       </MobileFilter>
       <CurrentPlanet>
         <div className="planet-and-info-container">
-          <div className="img-container">
+          <motion.div
+            key={combinedKey}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 360 }}
+            transition={{
+              duration: 0.3,
+              ease: [0, 0.71, 0.2, 1.01],
+              scale: {
+                type: "spring",
+                damping: 5,
+                stiffness: 100,
+                restDelta: 0.001,
+              },
+            }}
+            className="img-container">
             <StyledImg
               style={{ width: currentPlanet?.design.overview_mobile }}
               src={
@@ -62,7 +86,7 @@ export default function Planet() {
                 alt="geology of a planet"
               />
             )}
-          </div>
+          </motion.div>
 
           <div className="info-and-viewOption-container">
             <div className="info-container">

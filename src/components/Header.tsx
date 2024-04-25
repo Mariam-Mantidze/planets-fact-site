@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Header() {
-  const [open, setOpen] = useState(false);
+type HeaderTypes = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
+export default function Header({ open, setOpen }: HeaderTypes) {
   const toggleMenu = () => {
     setOpen((open) => !open);
   };
-
   return (
     <>
       <StyledHeader>
