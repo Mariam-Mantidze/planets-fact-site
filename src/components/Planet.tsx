@@ -132,7 +132,24 @@ export default function Planet({
               </span>
             </div>
 
-            <div className="view-option-container"></div>
+            <div className="planet-number-facts-container">
+              <div className="planet-number-facts-box">
+                <p>RORATION TIME</p>
+                <span>{currentPlanet?.rotation}</span>
+              </div>
+              <div className="planet-number-facts-box">
+                <p>REVOLUTION TIME</p>
+                <span>{currentPlanet?.revolution}</span>
+              </div>
+              <div className="planet-number-facts-box">
+                <p>RADIUS</p>
+                <span>{currentPlanet?.radius}</span>
+              </div>
+              <div className="planet-number-facts-box">
+                <p>AVERAGE TEMP.</p>
+                <span>{currentPlanet?.temperature}</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </CurrentPlanet>
@@ -200,6 +217,39 @@ const CurrentPlanet = styled.main`
         display: flex;
         align-items: center;
         gap: 0.2rem;
+      }
+    }
+  }
+
+  & .planet-number-facts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 2.8rem;
+
+    & > .planet-number-facts-box {
+      border: 1px solid rgba(255, 255, 255, 20%);
+      padding: 0.9rem 2.4rem 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & p {
+        font-family: "League Spartan", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        line-height: 1.6rem;
+        letter-spacing: 0.7272727489471436px;
+        color: rgba(255, 255, 255, 50%);
+      }
+
+      & span {
+        font-family: "Antonio", sans-serif;
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 25.88px;
+        letter-spacing: -0.75px;
+        color: rgba(255, 255, 255, 1);
       }
     }
   }
