@@ -41,20 +41,39 @@ export default function Header({
           </svg>
         )}
 
-        {open ? (
+        {/* {tabletView && (
           <StyledNav>
             <StyledList>
               {data.map((planet, index) => {
                 return (
-                  <StyledLi
-                    onClick={toggleMenu}
-                    key={index}
-                    color={planet.design.color}
-                    style={{ animationDelay: `${index * 0.1}s` }}>
+                  <StyledLi key={index} color={planet.design.color}>
                     <div className="planet-box">
-                      <PlanetCircle color={planet.design.color}></PlanetCircle>
                       <Link to={`/${planet.name}`}>{planet.name}</Link>
                     </div>
+                  </StyledLi>
+                );
+              })}
+            </StyledList>
+          </StyledNav>
+        )} */}
+
+        <StyledNav open={open}>
+          <StyledList>
+            {data.map((planet, index) => {
+              return (
+                <StyledLi
+                  onClick={toggleMenu}
+                  key={index}
+                  color={planet.design.color}
+                  style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="planet-box">
+                    {mobileView && (
+                      <PlanetCircle color={planet.design.color}></PlanetCircle>
+                    )}
+
+                    <Link to={`/${planet.name}`}>{planet.name}</Link>
+                  </div>
+                  {mobileView && (
                     <svg
                       className="arrow"
                       xmlns="http://www.w3.org/2000/svg"
@@ -67,14 +86,12 @@ export default function Header({
                         d="M1 0l4 4-4 4"
                       />
                     </svg>
-                  </StyledLi>
-                );
-              })}
-            </StyledList>
-          </StyledNav>
-        ) : (
-          ""
-        )}
+                  )}
+                </StyledLi>
+              );
+            })}
+          </StyledList>
+        </StyledNav>
       </StyledHeader>
     </>
   );
@@ -88,6 +105,13 @@ const StyledHeader = styled.header`
   color: rgba(255, 255, 255, 1);
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 20%);
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 3.9rem;
+    padding: 3.2rem 5.2rem 2.7rem;
+  }
 
   & > h1 {
     font-family: "Antonio", sans-serif;
@@ -103,6 +127,7 @@ const StyledHeader = styled.header`
 `;
 
 const StyledNav = styled.nav`
+  display: ${(props) => (props.open ? "flex" : "none")};
   position: fixed;
   z-index: 2;
   width: 100%;
@@ -111,7 +136,14 @@ const StyledNav = styled.nav`
   background: rgba(7, 7, 36, 1);
   left: 0;
   top: 7.3rem;
-  /* transition: 2s ease-in-out; */
+
+  @media (min-width: 768px) {
+    display: flex;
+    transform: none;
+    position: static;
+    height: initial;
+    padding: 0;
+  }
 `;
 
 const StyledList = styled.ul`
@@ -128,6 +160,12 @@ const StyledList = styled.ul`
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
     text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+    opacity: 75%;
   }
 `;
 
@@ -146,6 +184,11 @@ const StyledLi = styled.li`
   animation: fadeIn 1s ease;
   animation-fill-mode: both;
   opacity: 0;
+
+  @media (min-width: 768px) {
+    border: none;
+    padding: 0;
+  }
 
   @keyframes fadeIn {
     to {
