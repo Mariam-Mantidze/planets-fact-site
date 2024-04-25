@@ -11,6 +11,12 @@ function App() {
   const [open, setOpen] = useState(false);
   const [viewOption, setViewOption] = useState("overview");
 
+  const mobileView = useMediaQuery("only screen and (max-width: 768px)");
+  const tabletView = useMediaQuery(
+    "only screen and (min-width: 769px) and (max-width: 1440px)"
+  );
+  const desktopView = useMediaQuery("only screen and (min-width: 1440px)");
+
   return (
     <>
       <GlobalStyles />
@@ -19,6 +25,9 @@ function App() {
         setOpen={setOpen}
         viewOption={viewOption}
         setViewOption={setViewOption}
+        mobileView={mobileView}
+        tabletView={tabletView}
+        desktopView={desktopView}
       />
       <Routes>
         <Route path="/" element={<Navigate to={"/Earth"} />} />
@@ -30,6 +39,9 @@ function App() {
               setViewOption={setViewOption}
               open={open}
               setOpen={setOpen}
+              mobileView={mobileView}
+              tabletView={tabletView}
+              desktopView={desktopView}
             />
           }
         />

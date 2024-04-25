@@ -6,9 +6,18 @@ import { useState } from "react";
 type HeaderTypes = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  mobileView: boolean;
+  tabletView: boolean;
+  desktopView: boolean;
 };
 
-export default function Header({ open, setOpen }: HeaderTypes) {
+export default function Header({
+  open,
+  setOpen,
+  mobileView,
+  tabletView,
+  desktopView,
+}: HeaderTypes) {
   const toggleMenu = () => {
     setOpen((open) => !open);
   };
@@ -16,17 +25,21 @@ export default function Header({ open, setOpen }: HeaderTypes) {
     <>
       <StyledHeader>
         <h1>THE PLANETS</h1>
-        <svg
-          onClick={toggleMenu}
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="17">
-          <g
-            fill={open ? "rgba(255, 255, 255, 0.20)" : "rgba(255, 255, 255, 1)"}
-            fillRule="evenodd">
-            <path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z" />
-          </g>
-        </svg>
+        {mobileView && (
+          <svg
+            onClick={toggleMenu}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="17">
+            <g
+              fill={
+                open ? "rgba(255, 255, 255, 0.20)" : "rgba(255, 255, 255, 1)"
+              }
+              fillRule="evenodd">
+              <path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z" />
+            </g>
+          </svg>
+        )}
 
         {open ? (
           <StyledNav>

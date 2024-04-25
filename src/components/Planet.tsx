@@ -9,6 +9,9 @@ type PlanetProps = {
   setViewOption: React.Dispatch<React.SetStateAction<string>>;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  mobileView: boolean;
+  tabletView: boolean;
+  desktopView: boolean;
 };
 
 export default function Planet({
@@ -16,6 +19,9 @@ export default function Planet({
   setViewOption,
   open,
   setOpen,
+  mobileView,
+  tabletView,
+  desktopView,
 }: PlanetProps) {
   const params = useParams();
 
@@ -31,27 +37,30 @@ export default function Planet({
 
   return (
     <>
-      <MobileFilter>
-        {viewOptionArr.map((filter, index) => {
-          return (
-            <span
-              style={{
-                color:
-                  filter === viewOption
-                    ? "rgba(255, 255, 255, 1)"
-                    : "rgba(255, 255, 255, 50%)",
-                borderBottom:
-                  filter === viewOption
-                    ? `4px solid ${currentPlanet?.design.color} `
-                    : "",
-              }}
-              onClick={() => setViewOption(filter)}
-              key={index}>
-              {filter.toUpperCase()}
-            </span>
-          );
-        })}
-      </MobileFilter>
+      {mobileView && (
+        <MobileFilter>
+          {viewOptionArr.map((filter, index) => {
+            return (
+              <span
+                style={{
+                  color:
+                    filter === viewOption
+                      ? "rgba(255, 255, 255, 1)"
+                      : "rgba(255, 255, 255, 50%)",
+                  borderBottom:
+                    filter === viewOption
+                      ? `4px solid ${currentPlanet?.design.color} `
+                      : "",
+                }}
+                onClick={() => setViewOption(filter)}
+                key={index}>
+                {filter.toUpperCase()}
+              </span>
+            );
+          })}
+        </MobileFilter>
+      )}
+
       <CurrentPlanet>
         <div className="planet-and-info-container">
           <motion.div
