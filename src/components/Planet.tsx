@@ -79,7 +79,7 @@ export default function Planet({
             }}
             className="img-container">
             <StyledImg
-              style={{ width: currentPlanet?.design.overview_mobile }}
+              currentPlanet={currentPlanet}
               src={
                 (viewOption === "structure" &&
                   currentPlanet?.images.internal) ||
@@ -97,23 +97,7 @@ export default function Planet({
             )}
           </motion.div>
 
-          <motion.div
-            className="info-and-viewOption-container"
-            // key={open}
-            // initial={{
-            //   opacity: 0,
-            //   transformStyle: "preserve-3d",
-            //   transform:
-            //     "perspective(1000px) rotateY(-80deg) translateX(-250px)",
-            // }}
-            // animate={{
-            //   opacity: 1,
-
-            //   transformStyle: "preserve-3d",
-            //   transform: "rotateY(0deg)  translateY(0px)",
-            // }}
-            // transition={{ duration: 0.8 }}
-          >
+          <motion.div className="info-and-viewOption-container">
             <div className="info-container">
               <h2>{currentPlanet?.name.toUpperCase()}</h2>
               <p>
@@ -183,6 +167,16 @@ const CurrentPlanet = styled.main`
     width: 6rem;
     position: absolute;
     bottom: -2rem;
+
+    @media (min-width: 768px) {
+      width: 8rem;
+      bottom: -4rem;
+    }
+
+    @media (min-width: 1440px) {
+      width: 13.325rem;
+      bottom: -8rem;
+    }
   }
 
   & .info-container {
@@ -266,6 +260,15 @@ const CurrentPlanet = styled.main`
 
 const StyledImg = styled.img`
   display: block;
+  width: ${(props) => props.currentPlanet.design.overview_mobile};
+
+  @media (min-width: 768px) {
+    width: ${(props) => props.currentPlanet.design.overview_tablet};
+  }
+
+  @media (min-width: 1440px) {
+    width: ${(props) => props.currentPlanet.design.overview_desktop};
+  }
 `;
 
 const MobileFilter = styled.div`

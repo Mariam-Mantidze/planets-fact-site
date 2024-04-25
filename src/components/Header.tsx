@@ -188,6 +188,7 @@ const StyledLi = styled.li`
   @media (min-width: 768px) {
     border: none;
     padding: 0;
+    justify-content: center;
   }
 
   @keyframes fadeIn {
