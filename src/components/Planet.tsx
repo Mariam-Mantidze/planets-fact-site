@@ -88,7 +88,23 @@ export default function Planet({
             )}
           </motion.div>
 
-          <div className="info-and-viewOption-container">
+          <motion.div
+            className="info-and-viewOption-container"
+            // key={open}
+            // initial={{
+            //   opacity: 0,
+            //   transformStyle: "preserve-3d",
+            //   transform:
+            //     "perspective(1000px) rotateY(-80deg) translateX(-250px)",
+            // }}
+            // animate={{
+            //   opacity: 1,
+
+            //   transformStyle: "preserve-3d",
+            //   transform: "rotateY(0deg)  translateY(0px)",
+            // }}
+            // transition={{ duration: 0.8 }}
+          >
             <div className="info-container">
               <h2>{currentPlanet?.name.toUpperCase()}</h2>
               <p>
@@ -117,7 +133,7 @@ export default function Planet({
             </div>
 
             <div className="view-option-container"></div>
-          </div>
+          </motion.div>
         </div>
       </CurrentPlanet>
     </>
