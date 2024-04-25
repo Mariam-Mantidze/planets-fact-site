@@ -34,6 +34,11 @@ export default function Planet({
   const combinedKey = `${viewOption}-${open}`;
 
   const viewOptionArr = ["overview", "structure", "surface"];
+  const viewOptionsBigScreen = [
+    "01 overview",
+    "02 internal structure",
+    "03 surface geology",
+  ];
 
   return (
     <>
@@ -124,26 +129,37 @@ export default function Planet({
                 </a>
               </span>
             </div>
-
-            <div className="planet-number-facts-container">
-              <div className="planet-number-facts-box">
-                <p>RORATION TIME</p>
-                <span>{currentPlanet?.rotation}</span>
+            {!mobileView && (
+              <div className="viewOption-container">
+                {viewOptionsBigScreen.map((option, index) => {
+                  return (
+                    <div key={index}>
+                      <p>{option}</p>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="planet-number-facts-box">
-                <p>REVOLUTION TIME</p>
-                <span>{currentPlanet?.revolution}</span>
-              </div>
-              <div className="planet-number-facts-box">
-                <p>RADIUS</p>
-                <span>{currentPlanet?.radius}</span>
-              </div>
-              <div className="planet-number-facts-box">
-                <p>AVERAGE TEMP.</p>
-                <span>{currentPlanet?.temperature}</span>
-              </div>
-            </div>
+            )}
           </motion.div>
+
+          <div className="planet-number-facts-container">
+            <div className="planet-number-facts-box">
+              <p>RORATION TIME</p>
+              <span>{currentPlanet?.rotation}</span>
+            </div>
+            <div className="planet-number-facts-box">
+              <p>REVOLUTION TIME</p>
+              <span>{currentPlanet?.revolution}</span>
+            </div>
+            <div className="planet-number-facts-box">
+              <p>RADIUS</p>
+              <span>{currentPlanet?.radius}</span>
+            </div>
+            <div className="planet-number-facts-box">
+              <p>AVERAGE TEMP.</p>
+              <span>{currentPlanet?.temperature}</span>
+            </div>
+          </div>
         </div>
       </CurrentPlanet>
     </>
@@ -151,10 +167,20 @@ export default function Planet({
 }
 
 const CurrentPlanet = styled.main`
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   margin-top: 6rem;
   padding: 0 2.4rem;
+
+  @media (min-width: 768px) {
+    margin-top: 10rem;
+  }
+
+  & .planet-and-info-container {
+    @media (min-width: 768px) {
+      padding: 4rem;
+    }
+  }
 
   & .img-container {
     display: flex;
@@ -179,47 +205,115 @@ const CurrentPlanet = styled.main`
     }
   }
 
-  & .info-container {
+  & .info-and-viewOption-container {
     margin-top: 5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.6rem;
-    color: rgba(255, 255, 255, 1);
-    font-weight: 400;
-
-    & > h2 {
-      font-size: 4rem;
-      font-weight: 400;
-      line-height: 5.176rem;
-    }
-
-    & > p {
-      font-family: "League Spartan", sans-serif;
-      font-size: 1.1rem;
-      line-height: 2.2rem;
-      text-align: center;
-      opacity: 50%;
-    }
-
-    & span {
-      opacity: 50%;
-      font-family: "League Spartan", sans-serif;
-      font-size: 1.2rem;
-      font-weight: 400;
-      line-height: 2.5rem;
+    @media (min-width: 768px) {
       display: flex;
       align-items: center;
-      gap: 0.2rem;
+      gap: 6.9rem;
+      justify-content: space-between;
+      margin-top: ;
+    }
 
-      & > a {
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
+    & .info-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 1);
+      font-weight: 400;
+
+      @media (min-width: 768px) {
+        align-items: flex-start;
+        width: 33.9rem;
+      }
+
+      & > h2 {
+        font-size: 4rem;
+        font-weight: 400;
+        line-height: 5.176rem;
+
+        @media (min-width: 768px) {
+          font-size: 4.8rem;
+        }
+        @media (min-width: 1400px) {
+          font-size: 8rem;
+        }
+      }
+
+      & > p {
+        font-family: "League Spartan", sans-serif;
+        font-size: 1.1rem;
+        line-height: 2.2rem;
+        text-align: center;
+        opacity: 50%;
+        margin-top: 1.6rem;
+
+        @media (min-width: 768px) {
+          text-align: start;
+          margin-top: 2.4rem;
+        }
+
+        @media (min-width: 1440px) {
+          text-align: start;
+          margin-top: 2.3rem;
+          font-size: 1.4rem;
+        }
+      }
+
+      & span {
+        opacity: 50%;
+        font-family: "League Spartan", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 2.5rem;
         display: flex;
         align-items: center;
         gap: 0.2rem;
+        margin-top: 3.2rem;
+
+        @media (min-width: 768px) {
+          margin-top: 4.4rem;
+        }
+
+        @media (min-width: 1440px) {
+          margin-top: 2.4rem;
+          font-size: 1.4rem;
+        }
+
+        & > a {
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.5);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.2rem;
+        }
+      }
+    }
+
+    & > .viewOption-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      cursor: pointer;
+
+      & div {
+        width: 28.1rem;
+
+        &:hover {
+          background: rgba(216, 216, 216, 20%);
+        }
+      }
+      & p {
+        border: 1px solid rgba(255, 255, 255, 20%);
+        font-family: "League Spartan", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 2.5rem;
+        letter-spacing: 1.9285714626312256px;
+        padding: 0.8rem 2rem;
+        color: rgba(255, 255, 255, 1);
       }
     }
   }
@@ -230,12 +324,28 @@ const CurrentPlanet = styled.main`
     gap: 0.8rem;
     margin-top: 2.8rem;
 
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1.1rem;
+      /* flex-direction: row;
+      gap: 1.1rem; */
+    }
+
     & > .planet-number-facts-box {
       border: 1px solid rgba(255, 255, 255, 20%);
       padding: 0.9rem 2.4rem 1.3rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      @media (min-width: 768px) {
+        flex-direction: column;
+        gap: 0.6rem;
+        align-items: flex-start;
+
+        padding: 1.6rem 1.9rem 1.5rem;
+      }
 
       & p {
         font-family: "League Spartan", sans-serif;
