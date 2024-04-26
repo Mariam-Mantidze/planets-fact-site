@@ -33,31 +33,37 @@ export default function Planet({
 
   const combinedKey = `${viewOption}-${open}`;
 
-  const viewOptionArr = ["overview", "structure", "surface"];
-  const viewOptionsBigScreen = [
-    "01 overview",
-    "02 internal structure",
-    "03 surface geology",
-  ];
+  const mobileViewMapping = {
+    Overview: "overview",
+    Structure: "structure",
+    Surface: "surface",
+  };
+
+  const desktopViewMapping = {
+    "01 Overview": "overview",
+    "02 Internal Structure": "structure",
+    "03 Surface Geology": "surface",
+  };
 
   return (
     <>
       {mobileView && (
         <MobileFilter>
-          {viewOptionArr.map((filter, index) => {
+          {Object.keys(mobileViewMapping).map((filter, index) => {
+            const identifier = mobileViewMapping[filter];
             return (
               <span
                 style={{
                   color:
-                    filter === viewOption
+                    identifier === viewOption
                       ? "rgba(255, 255, 255, 1)"
                       : "rgba(255, 255, 255, 50%)",
                   borderBottom:
-                    filter === viewOption
+                    identifier === viewOption
                       ? `4px solid ${currentPlanet?.design.color} `
                       : "",
                 }}
-                onClick={() => setViewOption(filter)}
+                onClick={() => setViewOption(identifier)}
                 key={index}>
                 {filter.toUpperCase()}
               </span>
@@ -131,16 +137,18 @@ export default function Planet({
             </div>
             {!mobileView && (
               <div className="viewOption-container">
-                {viewOptionsBigScreen.map((option, index) => {
+                {Object.keys(desktopViewMapping).map((option, index) => {
+                  const identifier = desktopViewMapping[option];
+
                   return (
                     <div
                       style={{
                         background:
-                          option === viewOption
+                          identifier === viewOption
                             ? `${currentPlanet?.design.color} `
                             : "",
                       }}
-                      onClick={() => setViewOption(option)}
+                      onClick={() => setViewOption(identifier)}
                       key={index}>
                       <p>{option.toUpperCase()}</p>
                     </div>
