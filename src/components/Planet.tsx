@@ -192,10 +192,16 @@ const CurrentPlanet = styled.main`
     margin-top: 10rem;
     padding: 0 4rem;
   }
+  @media (min-width: 1440px) {
+    padding: 0 16.5rem;
+    margin-top: 0;
+  }
 
   & .planet-and-info-container {
-    @media (min-width: 769px) {
-      /* padding: 4rem; */
+    @media (min-width: 1440px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 
@@ -204,6 +210,10 @@ const CurrentPlanet = styled.main`
     flex-direction: column;
     align-items: center;
     position: relative;
+
+    @media (min-width: 1440px) {
+      margin-top: 10rem;
+    }
   }
 
   & .geology-img {
@@ -232,6 +242,13 @@ const CurrentPlanet = styled.main`
       margin-top: 10rem;
     }
 
+    @media (min-width: 1440px) {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 16.5rem;
+      gap: 3.9rem;
+    }
+
     & .info-container {
       display: flex;
       flex-direction: column;
@@ -243,6 +260,11 @@ const CurrentPlanet = styled.main`
       @media (min-width: 769px) {
         align-items: flex-start;
         width: 33.9rem;
+        height: fit-content;
+      }
+
+      @media (min-width: 1440px) {
+        gap: 1rem;
       }
 
       & > h2 {
@@ -269,12 +291,14 @@ const CurrentPlanet = styled.main`
         @media (min-width: 769px) {
           text-align: start;
           margin-top: 2.4rem;
+          width: 33.9rem;
         }
 
         @media (min-width: 1440px) {
           text-align: start;
-          margin-top: 2.3rem;
+          margin-top: 3rem;
           font-size: 1.4rem;
+          width: 35rem;
         }
       }
 
