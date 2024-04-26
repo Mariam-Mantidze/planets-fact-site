@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router";
 import Planet from "./components/Planet";

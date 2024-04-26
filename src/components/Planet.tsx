@@ -1,28 +1,21 @@
 import data from "../data.json";
 import { useParams } from "react-router";
 import styled from "styled-components";
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 type PlanetProps = {
   viewOption: string;
   setViewOption: React.Dispatch<React.SetStateAction<string>>;
   open: boolean;
-  // setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   mobileView: boolean;
-  // tabletView: boolean;
-  // desktopView: boolean;
 };
 
 export default function Planet({
   viewOption,
   setViewOption,
   open,
-  // setOpen,
   mobileView,
-}: // tabletView,
-// desktopView,
-PlanetProps) {
+}: PlanetProps) {
   const params = useParams();
 
   // find current planet name
@@ -193,8 +186,9 @@ const CurrentPlanet = styled.main`
     padding: 0 4rem;
   }
   @media (min-width: 1440px) {
-    padding: 0 16.5rem;
+    /* padding: 0 16.5rem; */
     margin-top: 0;
+    padding: 0;
   }
 
   & .planet-and-info-container {
@@ -202,6 +196,7 @@ const CurrentPlanet = styled.main`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0px 10rem;
     }
   }
 

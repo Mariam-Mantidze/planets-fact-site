@@ -1,23 +1,14 @@
 import data from "../data.json";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
 
 type HeaderTypes = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   mobileView: boolean;
-  tabletView: boolean;
-  desktopView: boolean;
 };
 
-export default function Header({
-  open,
-  setOpen,
-  mobileView,
-  tabletView,
-  desktopView,
-}: HeaderTypes) {
+export default function Header({ open, setOpen, mobileView }: HeaderTypes) {
   const toggleMenu = () => {
     setOpen((open) => !open);
   };
@@ -51,27 +42,33 @@ export default function Header({
                   key={index}
                   style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="planet-box">
-                    {mobileView && (
-                      <PlanetCircle color={planet.design.color}></PlanetCircle>
-                    )}
+                    <Link to={`/${planet.name}`}>
+                      {mobileView && (
+                        <PlanetCircle
+                          color={planet.design.color}></PlanetCircle>
+                      )}
+                    </Link>
                     <Link to={`/${planet.name}`}>
                       {planet.name.toUpperCase()}
                     </Link>
                   </div>
-                  {mobileView && (
-                    <svg
-                      className="arrow"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="6"
-                      height="8">
-                      <path
-                        fill="none"
-                        stroke="#FFF"
-                        opacity=".4"
-                        d="M1 0l4 4-4 4"
-                      />
-                    </svg>
-                  )}
+
+                  <Link to={`/${planet.name}`}>
+                    {mobileView && (
+                      <svg
+                        className="arrow"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="6"
+                        height="8">
+                        <path
+                          fill="none"
+                          stroke="#FFF"
+                          opacity=".4"
+                          d="M1 0l4 4-4 4"
+                        />
+                      </svg>
+                    )}
+                  </Link>
                 </StyledLi>
               );
             })}
