@@ -19,15 +19,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Header
-        open={open}
-        setOpen={setOpen}
-        viewOption={viewOption}
-        setViewOption={setViewOption}
-        mobileView={mobileView}
-        tabletView={tabletView}
-        desktopView={desktopView}
-      />
+      <Header open={open} setOpen={setOpen} mobileView={mobileView} />
       <Routes>
         <Route path="/" element={<Navigate to={"/Earth"} />} />
         <Route
@@ -37,10 +29,7 @@ function App() {
               viewOption={viewOption}
               setViewOption={setViewOption}
               open={open}
-              setOpen={setOpen}
               mobileView={mobileView}
-              tabletView={tabletView}
-              desktopView={desktopView}
             />
           }
         />

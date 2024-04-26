@@ -8,6 +8,10 @@ type HeaderTypes = {
   mobileView: boolean;
 };
 
+interface StyledNavProps {
+  open: boolean;
+}
+
 export default function Header({ open, setOpen, mobileView }: HeaderTypes) {
   const toggleMenu = () => {
     setOpen((open) => !open);
@@ -117,7 +121,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const StyledNav = styled.nav`
+const StyledNav = styled.nav<StyledNavProps>`
   display: ${(props) => (props.open ? "flex" : "none")};
   position: fixed;
   z-index: 2;

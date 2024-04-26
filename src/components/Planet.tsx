@@ -10,6 +10,16 @@ type PlanetProps = {
   mobileView: boolean;
 };
 
+interface StyledImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  currentPlanet: {
+    design: {
+      overview_mobile: string;
+      overview_tablet: string;
+      overview_desktop: string;
+    };
+  };
+}
+
 export default function Planet({
   viewOption,
   setViewOption,
@@ -43,7 +53,8 @@ export default function Planet({
       {mobileView && (
         <MobileFilter>
           {Object.keys(mobileViewMapping).map((filter, index) => {
-            const identifier = mobileViewMapping[filter];
+            const identifier =
+              mobileViewMapping[filter as keyof typeof mobileViewMapping];
             return (
               <span
                 style={{
@@ -131,7 +142,10 @@ export default function Planet({
             {!mobileView && (
               <div className="viewOption-container">
                 {Object.keys(desktopViewMapping).map((option, index) => {
-                  const identifier = desktopViewMapping[option];
+                  const identifier =
+                    desktopViewMapping[
+                      option as keyof typeof desktopViewMapping
+                    ];
 
                   return (
                     <div
@@ -436,7 +450,7 @@ const CurrentPlanet = styled.main`
   }
 `;
 
-const StyledImg = styled.img`
+const StyledImg = styled.img<StyledImgProps>`
   display: block;
   width: ${(props) => props.currentPlanet.design.overview_mobile};
 
