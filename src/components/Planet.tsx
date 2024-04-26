@@ -64,7 +64,7 @@ export default function Planet({
                       : "rgba(255, 255, 255, 50%)",
                   borderBottom:
                     identifier === viewOption
-                      ? `4px solid ${currentPlanet?.design.color} `
+                      ? `4px solid ${currentPlanet?.design?.color} `
                       : "",
                 }}
                 onClick={() => setViewOption(identifier)}
