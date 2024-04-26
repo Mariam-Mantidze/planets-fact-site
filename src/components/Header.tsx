@@ -41,22 +41,6 @@ export default function Header({
           </svg>
         )}
 
-        {/* {tabletView && (
-          <StyledNav>
-            <StyledList>
-              {data.map((planet, index) => {
-                return (
-                  <StyledLi key={index} color={planet.design.color}>
-                    <div className="planet-box">
-                      <Link to={`/${planet.name}`}>{planet.name}</Link>
-                    </div>
-                  </StyledLi>
-                );
-              })}
-            </StyledList>
-          </StyledNav>
-        )} */}
-
         <StyledNav open={open}>
           <StyledList>
             {data.map((planet, index) => {
@@ -70,7 +54,6 @@ export default function Header({
                     {mobileView && (
                       <PlanetCircle color={planet.design.color}></PlanetCircle>
                     )}
-
                     <Link to={`/${planet.name}`}>{planet.name}</Link>
                   </div>
                   {mobileView && (
@@ -106,7 +89,7 @@ const StyledHeader = styled.header`
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 20%);
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     flex-direction: column;
     align-items: center;
     gap: 3.9rem;
@@ -137,7 +120,7 @@ const StyledNav = styled.nav`
   left: 0;
   top: 7.3rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: flex;
     transform: none;
     position: static;
@@ -162,7 +145,7 @@ const StyledList = styled.ul`
     text-decoration: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     flex-direction: row;
     justify-content: space-evenly;
     opacity: 75%;
@@ -185,7 +168,7 @@ const StyledLi = styled.li`
   animation-fill-mode: both;
   opacity: 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     border: none;
     padding: 0;
     justify-content: center;

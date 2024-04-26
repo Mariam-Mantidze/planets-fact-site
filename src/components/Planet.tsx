@@ -133,32 +133,40 @@ export default function Planet({
               <div className="viewOption-container">
                 {viewOptionsBigScreen.map((option, index) => {
                   return (
-                    <div key={index}>
-                      <p>{option}</p>
+                    <div
+                      style={{
+                        background:
+                          option === viewOption
+                            ? `${currentPlanet?.design.color} `
+                            : "",
+                      }}
+                      onClick={() => setViewOption(option)}
+                      key={index}>
+                      <p>{option.toUpperCase()}</p>
                     </div>
                   );
                 })}
               </div>
             )}
           </motion.div>
+        </div>
 
-          <div className="planet-number-facts-container">
-            <div className="planet-number-facts-box">
-              <p>RORATION TIME</p>
-              <span>{currentPlanet?.rotation}</span>
-            </div>
-            <div className="planet-number-facts-box">
-              <p>REVOLUTION TIME</p>
-              <span>{currentPlanet?.revolution}</span>
-            </div>
-            <div className="planet-number-facts-box">
-              <p>RADIUS</p>
-              <span>{currentPlanet?.radius}</span>
-            </div>
-            <div className="planet-number-facts-box">
-              <p>AVERAGE TEMP.</p>
-              <span>{currentPlanet?.temperature}</span>
-            </div>
+        <div className="planet-number-facts-container">
+          <div className="planet-number-facts-box">
+            <p>RORATION TIME</p>
+            <span>{currentPlanet?.rotation}</span>
+          </div>
+          <div className="planet-number-facts-box">
+            <p>REVOLUTION TIME</p>
+            <span>{currentPlanet?.revolution}</span>
+          </div>
+          <div className="planet-number-facts-box">
+            <p>RADIUS</p>
+            <span>{currentPlanet?.radius}</span>
+          </div>
+          <div className="planet-number-facts-box">
+            <p>AVERAGE TEMP.</p>
+            <span>{currentPlanet?.temperature}</span>
           </div>
         </div>
       </CurrentPlanet>
@@ -172,13 +180,14 @@ const CurrentPlanet = styled.main`
   margin-top: 6rem;
   padding: 0 2.4rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin-top: 10rem;
+    padding: 0 4rem;
   }
 
   & .planet-and-info-container {
-    @media (min-width: 768px) {
-      padding: 4rem;
+    @media (min-width: 769px) {
+      /* padding: 4rem; */
     }
   }
 
@@ -194,7 +203,7 @@ const CurrentPlanet = styled.main`
     position: absolute;
     bottom: -2rem;
 
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       width: 8rem;
       bottom: -4rem;
     }
@@ -207,7 +216,7 @@ const CurrentPlanet = styled.main`
 
   & .info-and-viewOption-container {
     margin-top: 5rem;
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       display: flex;
       align-items: center;
       gap: 6.9rem;
@@ -223,7 +232,7 @@ const CurrentPlanet = styled.main`
       color: rgba(255, 255, 255, 1);
       font-weight: 400;
 
-      @media (min-width: 768px) {
+      @media (min-width: 769px) {
         align-items: flex-start;
         width: 33.9rem;
       }
@@ -233,7 +242,7 @@ const CurrentPlanet = styled.main`
         font-weight: 400;
         line-height: 5.176rem;
 
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
           font-size: 4.8rem;
         }
         @media (min-width: 1400px) {
@@ -249,7 +258,7 @@ const CurrentPlanet = styled.main`
         opacity: 50%;
         margin-top: 1.6rem;
 
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
           text-align: start;
           margin-top: 2.4rem;
         }
@@ -272,7 +281,7 @@ const CurrentPlanet = styled.main`
         gap: 0.2rem;
         margin-top: 3.2rem;
 
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
           margin-top: 4.4rem;
         }
 
@@ -324,7 +333,7 @@ const CurrentPlanet = styled.main`
     gap: 0.8rem;
     margin-top: 2.8rem;
 
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 1.1rem;
@@ -339,7 +348,7 @@ const CurrentPlanet = styled.main`
       align-items: center;
       justify-content: space-between;
 
-      @media (min-width: 768px) {
+      @media (min-width: 769px) {
         flex-direction: column;
         gap: 0.6rem;
         align-items: flex-start;
@@ -372,7 +381,7 @@ const StyledImg = styled.img`
   display: block;
   width: ${(props) => props.currentPlanet.design.overview_mobile};
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     width: ${(props) => props.currentPlanet.design.overview_tablet};
   }
 
