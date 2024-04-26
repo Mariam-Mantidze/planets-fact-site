@@ -228,7 +228,7 @@ const CurrentPlanet = styled.main`
 
     @media (min-width: 1440px) {
       width: 13.325rem;
-      bottom: -8rem;
+      bottom: -4rem;
     }
   }
 
@@ -377,6 +377,16 @@ const CurrentPlanet = styled.main`
       gap: 1.1rem; */
     }
 
+    @media (min-width: 1440px) {
+      display: grid;
+      grid-template-columns: repeat(4, 25.5rem);
+      gap: 3rem;
+      margin-top: 8.7rem;
+      justify-content: center;
+      /* flex-direction: row;
+      gap: 1.1rem; */
+    }
+
     & > .planet-number-facts-box {
       border: 1px solid rgba(255, 255, 255, 20%);
       padding: 0.9rem 2.4rem 1.3rem;
@@ -389,6 +399,13 @@ const CurrentPlanet = styled.main`
         gap: 0.6rem;
         align-items: flex-start;
         padding: 1.6rem 1.9rem 1.5rem;
+      }
+
+      @media (min-width: 1440px) {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: flex-start;
+        padding: 2rem 2.3rem 2.7rem;
       }
 
       & p {
