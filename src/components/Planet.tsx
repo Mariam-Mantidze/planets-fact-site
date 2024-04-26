@@ -12,7 +12,7 @@ type PlanetProps = {
 
 interface StyledImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   currentPlanet: {
-    design: {
+    design?: {
       overview_mobile: string;
       overview_tablet: string;
       overview_desktop: string;
