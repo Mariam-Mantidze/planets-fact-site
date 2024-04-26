@@ -21,6 +21,7 @@ export default function Header({
   const toggleMenu = () => {
     setOpen((open) => !open);
   };
+
   return (
     <>
       <StyledHeader>
@@ -48,13 +49,14 @@ export default function Header({
                 <StyledLi
                   onClick={toggleMenu}
                   key={index}
-                  color={planet.design.color}
                   style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="planet-box">
                     {mobileView && (
                       <PlanetCircle color={planet.design.color}></PlanetCircle>
                     )}
-                    <Link to={`/${planet.name}`}>{planet.name}</Link>
+                    <Link to={`/${planet.name}`}>
+                      {planet.name.toUpperCase()}
+                    </Link>
                   </div>
                   {mobileView && (
                     <svg
@@ -96,13 +98,22 @@ const StyledHeader = styled.header`
     padding: 3.2rem 5.2rem 2.7rem;
   }
 
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   & > h1 {
     font-family: "Antonio", sans-serif;
     font-size: 2.8rem;
     font-weight: 400;
     line-height: 3.623rem;
-    text-align: left;
+    /* text-align: left; */
   }
+
+  /* @media (min-width: 1440px) {
+    flex-wrap: nowrap;
+  } */
 
   & > svg {
     cursor: pointer;
@@ -127,6 +138,10 @@ const StyledNav = styled.nav`
     height: initial;
     padding: 0;
   }
+
+  @media (min-width: 1440px) {
+    width: unset;
+  }
 `;
 
 const StyledList = styled.ul`
@@ -143,6 +158,7 @@ const StyledList = styled.ul`
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
     text-decoration: none;
+    font-size: 1.1rem;
   }
 
   @media (min-width: 769px) {
@@ -150,10 +166,15 @@ const StyledList = styled.ul`
     justify-content: space-evenly;
     opacity: 75%;
   }
+
+  @media (min-width: 1440px) {
+    justify-content: flex-end;
+    gap: 3.3rem;
+  }
 `;
 
 const StyledLi = styled.li`
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   font-weight: 700;
   line-height: 2.5rem;
   letter-spacing: 0.136rem;
@@ -163,7 +184,6 @@ const StyledLi = styled.li`
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-
   animation: fadeIn 1s ease;
   animation-fill-mode: both;
   opacity: 0;
@@ -172,6 +192,11 @@ const StyledLi = styled.li`
     border: none;
     padding: 0;
     justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  @media (min-width: 1440px) {
+    width: unset;
   }
 
   @keyframes fadeIn {

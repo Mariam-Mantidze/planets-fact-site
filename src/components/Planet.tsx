@@ -2,27 +2,27 @@ import data from "../data.json";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 type PlanetProps = {
   viewOption: string;
   setViewOption: React.Dispatch<React.SetStateAction<string>>;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  // setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   mobileView: boolean;
-  tabletView: boolean;
-  desktopView: boolean;
+  // tabletView: boolean;
+  // desktopView: boolean;
 };
 
 export default function Planet({
   viewOption,
   setViewOption,
   open,
-  setOpen,
+  // setOpen,
   mobileView,
-  tabletView,
-  desktopView,
-}: PlanetProps) {
+}: // tabletView,
+// desktopView,
+PlanetProps) {
   const params = useParams();
 
   // find current planet name
@@ -229,7 +229,7 @@ const CurrentPlanet = styled.main`
       align-items: center;
       gap: 6.9rem;
       justify-content: space-between;
-      margin-top: ;
+      margin-top: 10rem;
     }
 
     & .info-container {
@@ -325,12 +325,16 @@ const CurrentPlanet = styled.main`
       & p {
         border: 1px solid rgba(255, 255, 255, 20%);
         font-family: "League Spartan", sans-serif;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         font-weight: 700;
         line-height: 2.5rem;
         letter-spacing: 1.9285714626312256px;
         padding: 0.8rem 2rem;
         color: rgba(255, 255, 255, 1);
+
+        @media (min-width: 1440px) {
+          font-size: 1.2rem;
+        }
       }
     }
   }
@@ -360,7 +364,6 @@ const CurrentPlanet = styled.main`
         flex-direction: column;
         gap: 0.6rem;
         align-items: flex-start;
-
         padding: 1.6rem 1.9rem 1.5rem;
       }
 
@@ -371,6 +374,10 @@ const CurrentPlanet = styled.main`
         line-height: 1.6rem;
         letter-spacing: 0.7272727489471436px;
         color: rgba(255, 255, 255, 50%);
+
+        @media (min-width: 1440px) {
+          font-size: 1.1rem;
+        }
       }
 
       & span {
@@ -380,6 +387,14 @@ const CurrentPlanet = styled.main`
         line-height: 25.88px;
         letter-spacing: -0.75px;
         color: rgba(255, 255, 255, 1);
+
+        @media (min-width: 769px) {
+          font-size: 2.4rem;
+        }
+
+        @media (min-width: 1440px) {
+          font-size: 4rem;
+        }
       }
     }
   }
