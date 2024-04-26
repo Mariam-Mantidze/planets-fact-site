@@ -11,10 +11,10 @@ function App() {
   const [viewOption, setViewOption] = useState("overview");
 
   const mobileView = useMediaQuery("only screen and (max-width: 768px)");
-  const tabletView = useMediaQuery(
-    "only screen and (min-width: 769px) and (max-width: 1440px)"
-  );
-  const desktopView = useMediaQuery("only screen and (min-width: 1440px)");
+  // const tabletView = useMediaQuery(
+  //   "only screen and (min-width: 769px) and (max-width: 1440px)"
+  // );
+  // const desktopView = useMediaQuery("only screen and (min-width: 1440px)");
 
   return (
     <>
