@@ -102,6 +102,7 @@ const StyledHeader = styled.header`
   @media (min-width: 1440px) {
     flex-direction: row;
     justify-content: space-between;
+    padding: 2.2rem 4.1rem 2rem 3.2rem;
   }
 
   & > h1 {
@@ -210,6 +211,10 @@ const StyledLi = styled.li`
     display: flex;
     align-items: center;
     gap: 24px;
+
+    @media (min-width: 1440px) {
+      gap: 0;
+    }
   }
 `;
 

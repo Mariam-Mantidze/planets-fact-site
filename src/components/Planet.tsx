@@ -208,7 +208,7 @@ const CurrentPlanet = styled.main`
   & .planet-and-info-container {
     @media (min-width: 1440px) {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       padding: 0px 10rem;
     }
@@ -351,6 +351,10 @@ const CurrentPlanet = styled.main`
       & div {
         width: 28.1rem;
 
+        @media (min-width: 1440px) {
+          width: 35rem;
+        }
+
         &:hover {
           background: rgba(216, 216, 216, 20%);
         }
@@ -367,6 +371,7 @@ const CurrentPlanet = styled.main`
 
         @media (min-width: 1440px) {
           font-size: 1.2rem;
+          padding: 1.2rem 2.8rem;
         }
       }
     }
