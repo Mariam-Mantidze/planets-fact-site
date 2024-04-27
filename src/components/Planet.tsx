@@ -11,8 +11,8 @@ type PlanetProps = {
 };
 
 interface StyledImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  currentPlanet: {
-    design?: {
+  currentPlanet?: {
+    design: {
       overview_mobile: string;
       overview_tablet: string;
       overview_desktop: string;
@@ -457,14 +457,14 @@ const CurrentPlanet = styled.main`
 
 const StyledImg = styled.img<StyledImgProps>`
   display: block;
-  width: ${(props) => props.currentPlanet.design.overview_mobile};
+  width: ${(props) => props.currentPlanet?.design.overview_mobile};
 
   @media (min-width: 769px) {
-    width: ${(props) => props.currentPlanet.design.overview_tablet};
+    width: ${(props) => props.currentPlanet?.design.overview_tablet};
   }
 
   @media (min-width: 1440px) {
-    width: ${(props) => props.currentPlanet.design.overview_desktop};
+    width: ${(props) => props.currentPlanet?.design.overview_desktop};
   }
 `;
 
