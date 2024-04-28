@@ -112,7 +112,7 @@ export default function Planet({
             )}
           </motion.div>
 
-          <motion.div className="info-and-viewOption-container">
+          <div className="info-and-viewOption-container">
             <div className="info-container">
               <h2>{currentPlanet?.name.toUpperCase()}</h2>
               <p>
@@ -163,7 +163,7 @@ export default function Planet({
                 })}
               </div>
             )}
-          </motion.div>
+          </div>
         </div>
 
         <div className="planet-number-facts-container">
@@ -193,11 +193,11 @@ const CurrentPlanet = styled.main`
   /* display: flex; */
   /* justify-content: center; */
   margin-top: 6rem;
-  padding: 0 2.4rem;
+  padding: 0 2.4rem 4.7rem;
 
   @media (min-width: 769px) {
     margin-top: 10rem;
-    padding: 0 4rem;
+    padding: 0 4rem 3.6rem;
   }
   @media (min-width: 1440px) {
     /* padding: 0 16.5rem; */
@@ -397,6 +397,7 @@ const CurrentPlanet = styled.main`
       gap: 3rem;
       margin-top: 8.7rem;
       justify-content: center;
+      padding-bottom: 5.6rem;
       /* flex-direction: row;
       gap: 1.1rem; */
     }
