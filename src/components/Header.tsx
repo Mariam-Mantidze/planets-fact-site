@@ -7,11 +7,15 @@ type HeaderTypes = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   mobileView: boolean;
-  currentPlanet: {};
+  currentPlanet?: PlanetData;
 };
 
 interface StyledNavProps {
   open: boolean;
+}
+
+interface StyledLiProps extends React.LiHTMLAttributes<HTMLLIElement> {
+  isActive: boolean;
 }
 
 export default function Header({
@@ -57,9 +61,9 @@ export default function Header({
                   style={{
                     animationDelay: `${index * 0.1}s`,
                     borderTop:
-                      desktopView &&
-                      planet === currentPlanet &&
-                      `4px solid ${currentPlanet?.design?.color} `,
+                      desktopView && planet === currentPlanet
+                        ? `4px solid ${currentPlanet?.design?.color}`
+                        : undefined,
                   }}>
                   <div className="planet-box">
                     <Link to={`/${planet.name}`}>
@@ -199,7 +203,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledLi = styled.li`
+const StyledLi = styled.li<StyledLiProps>`
   /* font-size: 1.5rem; */
   font-weight: 700;
   line-height: 2.5rem;

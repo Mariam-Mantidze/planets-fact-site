@@ -6,7 +6,7 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import data from "./data.json";
+import Planetsdata from "./data.json";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -16,7 +16,9 @@ function App() {
   const path = location.pathname.split("/");
   const planetName = path[path.length - 1];
 
-  const currentPlanet = data.find((planet) => planet.name === planetName);
+  const currentPlanet = Planetsdata.find(
+    (planet) => planet.name === planetName
+  );
 
   const mobileView = useMediaQuery("only screen and (max-width: 768px)");
   // const tabletView = useMediaQuery(
