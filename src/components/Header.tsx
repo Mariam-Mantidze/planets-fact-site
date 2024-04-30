@@ -3,16 +3,24 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type HeaderTypes = {
+  desktopView: boolean;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   mobileView: boolean;
+  currentPlanet: {};
 };
 
 interface StyledNavProps {
   open: boolean;
 }
 
-export default function Header({ open, setOpen, mobileView }: HeaderTypes) {
+export default function Header({
+  desktopView,
+  open,
+  setOpen,
+  mobileView,
+  currentPlanet,
+}: HeaderTypes) {
   const toggleMenu = () => {
     setOpen((open) => !open);
   };
@@ -40,11 +48,19 @@ export default function Header({ open, setOpen, mobileView }: HeaderTypes) {
         <StyledNav open={open}>
           <StyledList>
             {data.map((planet, index) => {
+              const isActive = planet === currentPlanet;
               return (
                 <StyledLi
+                  isActive={isActive}
                   onClick={toggleMenu}
                   key={index}
-                  style={{ animationDelay: `${index * 0.1}s` }}>
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    borderTop:
+                      desktopView &&
+                      planet === currentPlanet &&
+                      `4px solid ${currentPlanet?.design?.color} `,
+                  }}>
                   <div className="planet-box">
                     <Link to={`/${planet.name}`}>
                       {mobileView && (
@@ -52,7 +68,13 @@ export default function Header({ open, setOpen, mobileView }: HeaderTypes) {
                           color={planet.design.color}></PlanetCircle>
                       )}
                     </Link>
-                    <Link to={`/${planet.name}`}>
+                    <Link
+                      to={`/${planet.name}`}
+                      style={{
+                        color: isActive
+                          ? "rgba(255, 255, 255, 1)"
+                          : "rgba(255, 255, 255, 50%)",
+                      }}>
                       {planet.name.toUpperCase()}
                     </Link>
                   </div>
@@ -102,7 +124,8 @@ const StyledHeader = styled.header`
   @media (min-width: 1440px) {
     flex-direction: row;
     justify-content: space-between;
-    padding: 2.2rem 4.1rem 2rem 3.2rem;
+    padding: 0;
+    /* padding: 2.2rem 4.1rem 2rem 3.2rem; */
   }
 
   & > h1 {
@@ -111,11 +134,12 @@ const StyledHeader = styled.header`
     font-weight: 400;
     line-height: 3.623rem;
     /* text-align: left; */
-  }
 
-  /* @media (min-width: 1440px) {
-    flex-wrap: nowrap;
-  } */
+    @media (min-width: 1440px) {
+      /* flex-wrap: nowrap; */
+      padding: 2.2rem 0 2.7rem 3.2rem;
+    }
+  }
 
   & > svg {
     cursor: pointer;
@@ -157,7 +181,7 @@ const StyledList = styled.ul`
   cursor: pointer;
 
   a:-webkit-any-link {
-    color: rgba(255, 255, 255, 1);
+    /* color: rgba(255, 255, 255, 1); */
     cursor: pointer;
     text-decoration: none;
     font-size: 1.1rem;
@@ -199,7 +223,9 @@ const StyledLi = styled.li`
 
   @media (min-width: 1440px) {
     width: unset;
+    padding: ${(props) => (props.isActive ? "2.9rem 0.7rem" : "3.3rem 0.7rem")};
   }
+  /* padding-top: 4rem; */
 
   @keyframes fadeIn {
     to {
