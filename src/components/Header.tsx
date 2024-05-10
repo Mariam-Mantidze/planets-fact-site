@@ -54,37 +54,34 @@ export default function Header({
             {data.map((planet, index) => {
               const isActive = planet === currentPlanet;
               return (
-                <StyledLi
-                  isActive={isActive}
-                  onClick={toggleMenu}
+                <Link
                   key={index}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                    borderTop:
-                      desktopView && planet === currentPlanet
-                        ? `4px solid ${currentPlanet?.design?.color}`
-                        : undefined,
-                    width: mobileView ? "100%" : "unset",
-                  }}>
-                  <div className="planet-box">
-                    <Link to={`/${planet.name}`}>
+                  to={`/${planet.name}`}
+                  style={{ width: mobileView ? "100%" : "unset" }}>
+                  <StyledLi
+                    isActive={isActive}
+                    onClick={toggleMenu}
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                      borderTop:
+                        desktopView && planet === currentPlanet
+                          ? `4px solid ${currentPlanet?.design?.color}`
+                          : undefined,
+                    }}>
+                    <div className="planet-box">
                       {mobileView && (
                         <PlanetCircle
                           color={planet.design.color}></PlanetCircle>
                       )}
-                    </Link>
-                    <Link
-                      to={`/${planet.name}`}
-                      style={{
-                        color: isActive
-                          ? "rgba(255, 255, 255, 1)"
-                          : "rgba(255, 255, 255, 50%)",
-                      }}>
-                      {planet.name.toUpperCase()}
-                    </Link>
-                  </div>
-
-                  <Link to={`/${planet.name}`}>
+                      <p
+                        style={{
+                          color: isActive
+                            ? "rgba(255, 255, 255, 1)"
+                            : "rgba(255, 255, 255, 50%)",
+                        }}>
+                        {planet.name.toUpperCase()}
+                      </p>
+                    </div>
                     {mobileView && (
                       <svg
                         className="arrow"
@@ -99,8 +96,8 @@ export default function Header({
                         />
                       </svg>
                     )}
-                  </Link>
-                </StyledLi>
+                  </StyledLi>
+                </Link>
               );
             })}
           </StyledList>
