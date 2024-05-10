@@ -64,6 +64,7 @@ export default function Header({
                       desktopView && planet === currentPlanet
                         ? `4px solid ${currentPlanet?.design?.color}`
                         : undefined,
+                    width: mobileView ? "100%" : "unset",
                   }}>
                   <div className="planet-box">
                     <Link to={`/${planet.name}`}>
@@ -209,7 +210,7 @@ const StyledLi = styled.li<StyledLiProps>`
   line-height: 2.5rem;
   letter-spacing: 0.136rem;
   border-bottom: 1px solid rgba(255, 255, 255, 10%);
-  width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
